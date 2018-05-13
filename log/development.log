@@ -650,3 +650,36 @@ ActionController::RoutingError (No route matches [PUT] "/posts.3"):
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (23.2ms)
+
+
+Started GET "/" for 208.103.68.70 at 2018-05-13 21:54:35 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/railties-4.2.10/lib/rails/templates/rails/welcome/index.html.erb (1.5ms)
+Completed 200 OK in 17ms (Views: 8.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts" for 208.103.68.70 at 2018-05-13 21:54:40 +0000
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered posts/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 221ms (Views: 219.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/posts/3/edit" for 208.103.68.70 at 2018-05-13 21:54:49 +0000
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered posts/edit.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 16ms (Views: 10.1ms | ActiveRecord: 0.2ms)
+
+
+Started PUT "/posts/3" for 208.103.68.70 at 2018-05-13 21:54:59 +0000
+Processing by PostsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WGSLywcfzh13XvdvNa/zsRYKuf0Z1AV/WPWHD9ESnjZMRwInZkD9aZU2m4KxY46tHMbWgMQp4gsHynEgQzpTbQ==", "title"=>"titles", "description"=>"descriptive words\r\n", "commit"=>"Submit Post", "id"=>"3"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "posts" SET "title" = ?, "description" = ?, "updated_at" = ? WHERE "posts"."id" = ?  [["title", "titles"], ["description", "descriptive words\r\n"], ["updated_at", "2018-05-13 21:54:59.050350"], ["id", 3]]
+  [1m[36m (2.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://159.203.187.180:38856/posts/3
+Completed 302 Found in 72ms (ActiveRecord: 3.4ms)
